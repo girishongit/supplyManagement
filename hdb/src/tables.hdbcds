@@ -1,0 +1,125 @@
+namespace supplyManagement.hdb;
+
+context data {
+	
+	context productCatalouge{
+		entity products{
+			productID: Integer;
+			productCategory: String(10);
+			productType: String(20);
+			productmodel: String(20);
+			sellingUnit: String(10);
+			unitPrice: Decimal(8,3);
+		};
+	};
+	
+	context businessPartner{
+	
+		entity BPDetails{
+			customerID: Integer;
+			customerName: Integer;
+			customerAddress: String(50);
+			city: String(25);
+			state: String(25);
+			country: String(25);
+			zipCode: String(10);
+			phone: String(15);
+			email: String(20);
+		};
+	};
+	
+	context salesInquery{
+		
+		entity soQuoteItem{
+			key itemID: Integer;
+			productID: Integer;
+			quantity: Integer;
+			unitPrice: Decimal(8,3);
+			discount: Decimal(8,3);
+			tax: Decimal(8,3);
+			totalPrice: Decimal(10,2);
+			minQuantity: Integer;
+			packageIncluded: Integer;
+			shipmentIncluded: Integer;
+			validFrom: LocalDate;
+			validTo: LocalDate;
+			referenceID: Integer;
+			requestedDate: LocalDate;
+			createdDate: LocalDate;
+			createdBy: Integer;
+		};
+		
+		entity soQuoteHeader{
+			quoteID: Integer;
+			itemID: Integer;
+			requestedDate: Integer;
+			requestedBy: Integer;
+			totalAmount: Decimal(10,2);
+			discountAmount: Decimal(10,2);
+			deviveryPeriod: Integer;
+			status: Integer;
+			createdBy: Integer;
+			createdOn: LocalDate;
+		};
+		
+		entity soQuoteStatus{
+			statusID: Integer;
+			statusDisplay: String(10);
+			statusDescription: String(100); 
+		};
+		
+	};
+	
+	context salesOrder{
+	
+		entity soItems{
+			itemId: Integer;
+			productId: Integer;
+			quantity: Integer;
+			sellingPrice: Decimal(10,2);
+			tax: Decimal(8,2);
+			totalPrice: Decimal(8,2);
+			dueDate: LocalDate;
+			referenceId: Integer;
+			status: Integer;
+			createdOn: LocalDate;
+			modifiedOn: LocalDate;
+		};
+		
+		entity soHeader{
+			orderId: Integer;
+			itemId: Integer;
+			netPrice: Decimal(10,2);
+			tax: Decimal(10,2);
+			grossPrice: Decimal(10,2);
+			status: Integer;
+			dueDate: LocalDate;
+			referenceId: Integer;
+			createdOn: LocalDate;
+			modifiedOn: LocalDate;
+		};
+		
+		entity soInvoice{
+			orderId: Integer;
+			invoiceId: Integer;
+			estimatedDelivery: Integer;
+			actualDelivery: Integer;
+			billTo: Integer;
+			shipto: Integer;
+			netPrice: Decimal(10,2);
+			tax: Decimal(10,2);
+			grossPrice: Decimal(10,2);
+			invoiceDate: LocalDate;
+			paymentStatus: Integer;
+			createdOn: LocalDate;
+			createdBy: Integer;
+		};
+		
+		entity soStatus{
+			statusID: Integer;
+			statusDisplay: String(10);
+			statusDescription: String(100); 
+		};
+	};
+
+};
